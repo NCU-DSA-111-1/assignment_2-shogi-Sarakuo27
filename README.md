@@ -35,6 +35,6 @@ Blue chessbox會顯示藍方吃掉的棋子<br>
 
 遊戲結束
 ------
-當任一方的王將被吃，遊戲結束，棋局會存入Previous game.txt
+當任一方的王將被吃，遊戲結束，棋局會存入Previous game.txt<br>
 若欲回放棋局，需重新compile
 
