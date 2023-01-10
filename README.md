@@ -32,3 +32,9 @@ Red chessbox會顯示紅方吃掉的棋子<br>
 Blue chessbox會顯示藍方吃掉的棋子<br>
 只要chessbox裡面有棋子，之後的每次下棋前系統會詢問是否要從chessbox放棋，1 for yes 0 for no<br>
 可以按chessbox裡面標示的位置選擇要放的棋，例如該棋放在第0格，則輸入0以放置該棋<br>
+
+遊戲結束
+------
+當任一方的王將被吃，遊戲結束，棋局會存入Previous game.txt
+若欲回放棋局，需重新compile
+
