@@ -1,6 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <windows.h>
+
+void SetColor(int color)
+{
+  HANDLE hConsole;
+  hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  SetConsoleTextAttribute(hConsole,color);
+}
 
 //#include "walk.h" //Remember to create a new .h and .c file!!!!!!!!!!!
 
@@ -138,6 +146,7 @@ int main()
     }
     initialize_chessboard(&current_chessboard);
     Push_into_stack(&Stack,current_chessboard);
+    Insert_into_queue(current_chessboard,&rear,&front);
     Chesses(all_chess) ;
     print_chess(current_chessboard,all_chess);
 
@@ -625,11 +634,17 @@ void initialize_chessboard(Chessboard *initial){
 void print_chess(Chessboard chessboard,Chess all_chess[]) //print chess board
 {
     //string keep_chess;
-    printf("09 08 07 06 05 04 03 02 01 \n");
+    printf(" 09  08  07  06  05  04  03  02  01 \n");
     for(int C_cnt=0; C_cnt<COLUMN;C_cnt++)
     {
         for(int R_cnt=0; R_cnt<ROW; R_cnt++)
         {
+            if(chessboard.array[R_cnt][C_cnt]==-1)
+                SetColor(15);
+            else if(all_chess[chessboard.array[R_cnt][C_cnt]].color ==0)
+                SetColor(9);
+            else
+                SetColor(12);
             /*keep_chess = chess_symbol_and_color(all_chess[],chessboard.array[R_cnt][C_cnt]);
             if(all_chess[chessboard.array[R_cnt][C_cnt]].color ==0)//blue
             {
@@ -639,18 +654,39 @@ void print_chess(Chessboard chessboard,Chess all_chess[]) //print chess board
             {
                 //print red string
             }*/
-            printf("%d ",chessboard.array[R_cnt][C_cnt]);
+
+            printf(" %2d ",chessboard.array[R_cnt][C_cnt]);
+
+            /*if(chessboard.array[R_cnt][C_cnt]<=17 && chessboard.array[R_cnt][C_cnt]>=0)
+                printf(" 步 ");
+            else if (chessboard.array[R_cnt][C_cnt]==19 || chessboard.array[R_cnt][C_cnt]== 18)
+                printf(" 角 ");
+            else if (chessboard.array[R_cnt][C_cnt]==21 || chessboard.array[R_cnt][C_cnt]== 20)
+                printf(" 飛 ");
+            else if (chessboard.array[R_cnt][C_cnt]==22 || chessboard.array[R_cnt][C_cnt]== 23 || chessboard.array[R_cnt][C_cnt]==24 || chessboard.array[R_cnt][C_cnt]==25)
+                printf(" 香 ");
+            else if (chessboard.array[R_cnt][C_cnt]==26 || chessboard.array[R_cnt][C_cnt]== 27 || chessboard.array[R_cnt][C_cnt]==28 || chessboard.array[R_cnt][C_cnt]==29)
+                printf(" 桂 ");
+            else if (chessboard.array[R_cnt][C_cnt]==30 || chessboard.array[R_cnt][C_cnt]== 31 || chessboard.array[R_cnt][C_cnt]==32 || chessboard.array[R_cnt][C_cnt]==33)
+                printf(" 銀 ");
+            else if (chessboard.array[R_cnt][C_cnt]==34 || chessboard.array[R_cnt][C_cnt]== 35 || chessboard.array[R_cnt][C_cnt]==36 || chessboard.array[R_cnt][C_cnt]==37)
+                printf(" 金 ");
+            else if (chessboard.array[R_cnt][C_cnt]==38 || chessboard.array[R_cnt][C_cnt]== 39)
+                printf(" 王 ");
+            else
+                printf(" x ");*/
         }
+        SetColor(15);
         switch (C_cnt){
-            case 0: {printf("一\n");break;}
-            case 1: {printf("二\n");break;}
-            case 2: {printf("三\n");break;}
-            case 3: {printf("四\n");break;}
-            case 4: {printf("五\n");break;}
-            case 5: {printf("六\n");break;}
-            case 6: {printf("七\n");break;}
-            case 7: {printf("八\n");break;}
-            case 8: {printf("九\n");break;}
+            case 0: {printf("-01\n");break;}
+            case 1: {printf("-02\n");break;}
+            case 2: {printf("-03\n");break;}
+            case 3: {printf("-04\n");break;}
+            case 4: {printf("-05\n");break;}
+            case 5: {printf("-06\n");break;}
+            case 6: {printf("-07\n");break;}
+            case 7: {printf("-08\n");break;}
+            case 8: {printf("-09\n");break;}
             default: {printf(" ");break;}
         }
     }
