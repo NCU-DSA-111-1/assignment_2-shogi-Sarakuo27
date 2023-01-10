@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1672381860 source:c:\users\sarak\desktop\cad\shogi-linkedlist\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+
